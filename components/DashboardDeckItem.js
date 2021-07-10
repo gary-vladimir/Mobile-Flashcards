@@ -6,7 +6,7 @@ import {
     Play_700Bold,
 } from '@expo-google-fonts/play';
 
-function DashboardDeckItem() {
+function DashboardDeckItem(props) {
     let [fontsLoaded, error] = useFonts({
         Play_400Regular,
     });
@@ -16,8 +16,8 @@ function DashboardDeckItem() {
 
     return (
         <TouchableOpacity style={styles.card}>
-            <Text style={styles.title}>Star Wars</Text>
-            <Text style={styles.numOfCards}>5 cards</Text>
+            <Text style={styles.title}>{props.name}</Text>
+            <Text style={styles.numOfCards}>{props.numberOfCards} cards</Text>
         </TouchableOpacity>
     );
 }
