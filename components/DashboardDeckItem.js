@@ -1,7 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { AppLoading } from 'expo';
+import {
+    useFonts,
+    Play_400Regular,
+    Play_700Bold,
+} from '@expo-google-fonts/play';
 
 function DashboardDeckItem() {
+    let [fontsLoaded, error] = useFonts({
+        Play_400Regular,
+    });
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    }
+
     return (
         <View style={styles.card}>
             <Text style={styles.title}>Star Wars</Text>
@@ -17,6 +30,7 @@ const styles = StyleSheet.create({
     },
     numOfCards: {
         color: '#457B9D',
+        fontFamily: 'Play_400Regular',
     },
     card: {
         marginVertical: 10,
