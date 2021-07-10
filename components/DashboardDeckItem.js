@@ -15,7 +15,10 @@ function DashboardDeckItem(props) {
     }
 
     return (
-        <TouchableOpacity style={styles.card}>
+        <TouchableOpacity
+            style={styles.card}
+            onPress={() => console.log('pressed')}
+        >
             <Text style={styles.title}>{props.name}</Text>
             <Text style={styles.numOfCards}>{props.numberOfCards} cards</Text>
         </TouchableOpacity>
