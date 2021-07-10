@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import DashboardDeckItem from './DashboardDeckItem';
 
 function Home() {
     return (
-        <View style={{ padding: 20 }}>
+        <ScrollView style={{ padding: 20 }}>
             <Text style={styles.title}>Decks</Text>
             <DashboardDeckItem name="Javascript" numberOfCards={5} />
             <DashboardDeckItem name="Marvel" numberOfCards={3} />
             <DashboardDeckItem name="Star Wars" numberOfCards={4} />
-        </View>
+            <DashboardDeckItem name="Halo 4" numberOfCards={8} />
+            <View style={{ height: 30 }} />
+        </ScrollView>
     );
 }
 
