@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { AppLoading } from 'expo';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import {
     useFonts,
     Play_400Regular,
@@ -12,14 +11,14 @@ function DashboardDeckItem() {
         Play_400Regular,
     });
     if (!fontsLoaded) {
-        return <AppLoading />;
+        return <Text></Text>;
     }
 
     return (
-        <View style={styles.card}>
+        <TouchableOpacity style={styles.card}>
             <Text style={styles.title}>Star Wars</Text>
             <Text style={styles.numOfCards}>5 cards</Text>
-        </View>
+        </TouchableOpacity>
     );
 }
 
