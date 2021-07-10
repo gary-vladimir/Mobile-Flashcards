@@ -17,7 +17,15 @@ function NewDeck() {
                 </Text>
                 <TextInput style={styles.input} />
                 <TouchableOpacity style={styles.btn}>
-                    <Text style={{ color: '#457B9D' }}>Submit</Text>
+                    <Text
+                        style={{
+                            color: '#457B9D',
+                            fontWeight: 'bold',
+                            fontSize: 20,
+                        }}
+                    >
+                        Submit
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>
