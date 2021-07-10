@@ -19,7 +19,7 @@ function SettingsScreen() {
         <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
-            <Text>Settings!</Text>
+            <Text>Add Deck!</Text>
         </View>
     );
 }
@@ -40,7 +40,7 @@ export default function App() {
                                     color={color}
                                 />
                             );
-                        } else if (route.name === 'Settings') {
+                        } else if (route.name === 'Add Deck') {
                             return (
                                 <Ionicons
                                     name={
@@ -61,7 +61,7 @@ export default function App() {
                 }}
             >
                 <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Settings" component={SettingsScreen} />
+                <Tab.Screen name="Add Deck" component={SettingsScreen} />
             </Tab.Navigator>
         </NavigationContainer>
     );
