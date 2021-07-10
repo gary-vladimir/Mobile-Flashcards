@@ -6,7 +6,6 @@ function Home() {
     return (
         <ScrollView style={{ padding: 20 }}>
             <Text style={styles.title}>Decks</Text>
-            <DashboardDeckItem name="Javascript" numberOfCards={5} />
             <DashboardDeckItem name="Marvel" numberOfCards={3} />
             <DashboardDeckItem name="Star Wars" numberOfCards={4} />
             <DashboardDeckItem name="Halo 4" numberOfCards={8} />
