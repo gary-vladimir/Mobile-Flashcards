@@ -3,26 +3,8 @@ import { Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-function HomeScreen() {
-    return (
-        <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-        >
-            <Text>Home!</Text>
-        </View>
-    );
-}
-
-function SettingsScreen() {
-    return (
-        <View
-            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-        >
-            <Text>Add Deck!</Text>
-        </View>
-    );
-}
+import Home from './components/Home';
+import NewDeck from './components/NewDeck';
 
 const Tab = createBottomTabNavigator();
 
@@ -60,8 +42,8 @@ export default function App() {
                     inactiveTintColor: '#1D3557',
                 }}
             >
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Add Deck" component={SettingsScreen} />
+                <Tab.Screen name="Home" component={Home} />
+                <Tab.Screen name="Add Deck" component={NewDeck} />
             </Tab.Navigator>
         </NavigationContainer>
     );
