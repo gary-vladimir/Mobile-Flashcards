@@ -26,7 +26,7 @@ export default class App extends React.Component {
         return (
             <NavigationContainer>
                 <CustomStatusBar
-                    backgroundColor={'#457B9D'}
+                    backgroundColor={'#8d99ae'}
                     barStyle="light-content"
                 />
                 <Tab.Navigator
