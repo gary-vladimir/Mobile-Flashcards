@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     card: {
         marginVertical: 10,
         backgroundColor: 'white',
-        height: 400,
+        height: 350,
         borderRadius: 20,
         /* box shadow */
         shadowColor: '#adb5bd',
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     btn: {
-        marginTop: 140,
+        marginTop: 100,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
