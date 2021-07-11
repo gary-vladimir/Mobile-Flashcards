@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
     View,
     Text,
@@ -13,21 +13,30 @@ import {
 } from '@expo-google-fonts/play';
 
 function DashboardDeckItem(props) {
-    const [count, setCount] = React.useState(0);
+    const fadeAnim = useRef(new Animated.Value(1)).current;
     /* font */
     let [fontsLoaded, error] = useFonts({
         Play_400Regular,
     });
 
+    const fadeOut = () => {
+        // Will change fadeAnim value to 0 in 3 seconds
+        Animated.timing(fadeAnim, {
+            toValue: 0,
+            duration: 3000,
+        }).start();
+    };
+
     return !fontsLoaded ? (
         <Text />
     ) : (
-        <TouchableOpacity
-            style={styles.card}
-            onPress={() => console.log('pressed')}
-        >
-            <Text style={styles.title}>{props.name}</Text>
-            <Text style={styles.numOfCards}>{props.numberOfCards} cards</Text>
+        <TouchableOpacity onPress={fadeOut}>
+            <Animated.View style={[styles.card, { opacity: fadeAnim }]}>
+                <Text style={styles.title}>{props.name}</Text>
+                <Text style={styles.numOfCards}>
+                    {props.numberOfCards} cards
+                </Text>
+            </Animated.View>
         </TouchableOpacity>
     );
 }
