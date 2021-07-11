@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     Animated,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import {
     useFonts,
@@ -13,31 +14,40 @@ import {
 } from '@expo-google-fonts/play';
 
 function DashboardDeckItem(props) {
-    const fadeAnim = useRef(new Animated.Value(1)).current;
+    const scaleAnim = useRef(new Animated.Value(1)).current;
     /* font */
     let [fontsLoaded, error] = useFonts({
         Play_400Regular,
     });
 
-    const fadeOut = () => {
-        // Will change fadeAnim value to 0 in 3 seconds
-        Animated.timing(fadeAnim, {
-            toValue: 0,
-            duration: 3000,
+    const scaleUp = () => {
+        Animated.timing(scaleAnim, {
+            toValue: 1.2,
+            duration: 50,
+            useNativeDriver: true,
+        }).start(() => scaleDown());
+    };
+    const scaleDown = () => {
+        Animated.timing(scaleAnim, {
+            toValue: 1,
+            duration: 50,
+            useNativeDriver: true,
         }).start();
     };
 
     return !fontsLoaded ? (
         <Text />
     ) : (
-        <TouchableOpacity onPress={fadeOut}>
-            <Animated.View style={[styles.card, { opacity: fadeAnim }]}>
+        <TouchableWithoutFeedback onPress={scaleUp}>
+            <Animated.View
+                style={[styles.card, { transform: [{ scale: scaleAnim }] }]}
+            >
                 <Text style={styles.title}>{props.name}</Text>
                 <Text style={styles.numOfCards}>
                     {props.numberOfCards} cards
                 </Text>
             </Animated.View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
     );
 }
 
