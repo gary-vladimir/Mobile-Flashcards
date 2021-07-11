@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Animated,
+} from 'react-native';
 import {
     useFonts,
     Play_400Regular,
@@ -7,14 +13,15 @@ import {
 } from '@expo-google-fonts/play';
 
 function DashboardDeckItem(props) {
+    const [count, setCount] = React.useState(0);
+    /* font */
     let [fontsLoaded, error] = useFonts({
         Play_400Regular,
     });
-    if (!fontsLoaded) {
-        return <Text></Text>;
-    }
 
-    return (
+    return !fontsLoaded ? (
+        <Text />
+    ) : (
         <TouchableOpacity
             style={styles.card}
             onPress={() => console.log('pressed')}
