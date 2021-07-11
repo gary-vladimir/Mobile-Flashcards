@@ -32,7 +32,11 @@ function DashboardDeckItem(props) {
             toValue: 1,
             duration: 50,
             useNativeDriver: true,
-        }).start();
+        }).start(() => clickHandle());
+    };
+
+    const clickHandle = () => {
+        console.log('clicked!');
     };
 
     return !fontsLoaded ? (
