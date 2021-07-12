@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StatusBar, StyleSheet } from 'react-native';
+import { Text, View, StatusBar, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,6 +8,11 @@ import NewDeck from './components/NewDeck';
 import Constants from 'expo-constants';
 import Deck from './components/Deck';
 import { createStackNavigator } from '@react-navigation/stack';
+import {
+    useFonts,
+    Play_400Regular,
+    Play_700Bold,
+} from '@expo-google-fonts/play';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +30,10 @@ function CustomStatusBar({ backgroundColor, ...props }) {
     );
 }
 function Dashboard() {
+    /* font */
+    let [fontsLoaded, error] = useFonts({
+        Play_400Regular,
+    });
     return (
         <Tab.Navigator
             screenOptions={({ route }) => ({
@@ -80,12 +89,46 @@ export default class App extends React.Component {
                     <Stack.Screen
                         name="Deck"
                         options={{
-                            title: 'Star Wars',
-                            headerStyle: { height: 80 },
-                            headerTitleStyle: {
-                                color: '#1D3557',
-                                fontSize: 24,
-                            },
+                            headerTitle: (
+                                <View
+                                    style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Text
+                                        style={{
+                                            color: '#1D3557',
+                                            fontSize: 24,
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        Star Wars
+                                    </Text>
+                                    <Text
+                                        style={{
+                                            color: '#457B9D',
+                                            fontFamily: 'Play_400Regular',
+                                        }}
+                                    >
+                                        4 cards
+                                    </Text>
+                                </View>
+                            ),
+                            headerBackImage: () => (
+                                <Ionicons
+                                    name="arrow-back-outline"
+                                    style={{
+                                        fontSize: 35,
+                                        marginLeft: 15,
+                                        color: '#1D3557',
+                                    }}
+                                />
+                            ),
+                            headerBackTitleVisible: false,
+                            headerStyle: { height: 100 },
                         }}
                         component={Deck}
                     />
