@@ -88,48 +88,7 @@ export default class App extends React.Component {
                     />
                     <Stack.Screen
                         name="Deck"
-                        options={{
-                            headerTitle: (
-                                <View
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    <Text
-                                        style={{
-                                            color: '#1D3557',
-                                            fontSize: 24,
-                                            fontWeight: 'bold',
-                                        }}
-                                    >
-                                        Star Wars
-                                    </Text>
-                                    <Text
-                                        style={{
-                                            color: '#457B9D',
-                                            fontFamily: 'Play_400Regular',
-                                        }}
-                                    >
-                                        4 cards
-                                    </Text>
-                                </View>
-                            ),
-                            headerBackImage: () => (
-                                <Ionicons
-                                    name="arrow-back-outline"
-                                    style={{
-                                        fontSize: 35,
-                                        marginLeft: 15,
-                                        color: '#1D3557',
-                                    }}
-                                />
-                            ),
-                            headerBackTitleVisible: false,
-                            headerStyle: { height: 100 },
-                        }}
+                        options={headerOptions(4, 'Halo 4')}
                         component={Deck}
                     />
                 </Stack.Navigator>
@@ -137,3 +96,55 @@ export default class App extends React.Component {
         );
     }
 }
+
+const headerOptions = (numCards, title) => {
+    return {
+        headerTitle: (
+            <View
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                <Text
+                    style={{
+                        color: '#1D3557',
+                        fontSize: 24,
+                        fontWeight: 'bold',
+                    }}
+                >
+                    {title}
+                </Text>
+                <Text
+                    style={{
+                        color: '#457B9D',
+                        fontFamily: 'Play_400Regular',
+                    }}
+                >
+                    {numCards} cards
+                </Text>
+            </View>
+        ),
+        headerBackImage: () => (
+            <Ionicons
+                name="arrow-back-outline"
+                style={{
+                    fontSize: 35,
+                    marginLeft: 15,
+                    color: '#1D3557',
+                }}
+            />
+        ),
+        headerBackTitleVisible: false,
+        headerStyle: {
+            height: 100,
+            shadowColor: '#adb5bd',
+            shadowOffset: { width: 0, height: 0.2 },
+            shadowOpacity: 0.8,
+            shadowRadius: 5,
+            elevation: 5,
+        },
+    };
+};
