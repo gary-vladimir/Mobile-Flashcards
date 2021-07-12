@@ -1,7 +1,7 @@
 import React from 'react';
-import { ViewBase, Text } from 'react-native';
+import { View, Text } from 'react-native';
 
-function Deck(props) {
+function Deck() {
     return (
         <View>
             <Text>Deck view</Text>

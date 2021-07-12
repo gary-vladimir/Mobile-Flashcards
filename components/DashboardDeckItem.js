@@ -12,8 +12,10 @@ import {
     Play_400Regular,
     Play_700Bold,
 } from '@expo-google-fonts/play';
+import { useNavigation } from '@react-navigation/native';
 
 function DashboardDeckItem(props) {
+    const navigation = useNavigation();
     const scaleAnim = useRef(new Animated.Value(1)).current;
     /* font */
     let [fontsLoaded, error] = useFonts({
@@ -36,7 +38,8 @@ function DashboardDeckItem(props) {
     };
 
     const clickHandle = () => {
-        console.log('clicked!');
+        console.log('click!');
+        navigation.navigate('Deck');
     };
 
     return !fontsLoaded ? (
