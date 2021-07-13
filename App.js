@@ -93,8 +93,16 @@ export default class App extends React.Component {
                         options={headerOptions(4, 'Halo 4')}
                         component={Deck}
                     />
-                    <Stack.Screen name="AddCard" component={AddCard} />
-                    <Stack.Screen name="TakeQuiz" component={TakeQuiz} />
+                    <Stack.Screen
+                        name="AddCard"
+                        options={headerOptions(4, 'Add Card')}
+                        component={AddCard}
+                    />
+                    <Stack.Screen
+                        name="TakeQuiz"
+                        options={headerOptions(4, 'Take Quiz')}
+                        component={TakeQuiz}
+                    />
                 </Stack.Navigator>
             </NavigationContainer>
         );
