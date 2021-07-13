@@ -28,8 +28,8 @@ Please make sure to update tests as appropriate.
 
 ## Images of the App
 
-![alt text](./result_images/Home_View.png)
-![alt text](./result_images/NewDeck_View.png)
-![alt text](./result_images/Deck_View.png)
-![alt text](./result_images/AddCard_View.png)
-![alt text](./result_images/TakeQuiz_View.png)
+![Home](./result_images/Home_View.PNG)
+![New Deck](./result_images/NewDeck_View.PNG)
+![Deck](./result_images/Deck_View.PNG)
+![Add Card](./result_images/AddCard_View.PNG)
+![Take Quiz](./result_images/TakeQuiz_View.PNG)
