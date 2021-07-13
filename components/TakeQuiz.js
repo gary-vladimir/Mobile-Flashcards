@@ -5,8 +5,17 @@ function TakeQuiz() {
     return (
         <View style={{ padding: 20 }}>
             <Text style={styles.title}>Take a Guess!</Text>
+            <Text
+                style={[
+                    styles.title,
+                    { position: 'absolute', right: 20, top: 20 },
+                ]}
+            >
+                1/4
+            </Text>
             <View style={styles.card}>
                 <Text style={styles.question}>What is 117 name?</Text>
+
                 <TouchableOpacity style={{ marginTop: 170 }}>
                     <Text
                         style={{
