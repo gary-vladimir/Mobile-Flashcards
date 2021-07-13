@@ -1,22 +1,52 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useRef } from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Animated,
+    TouchableWithoutFeedback,
+} from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+
+function DeckItem(props) {
+    const scaleAnim = useRef(new Animated.Value(1)).current;
+
+    const scaleUp = () => {
+        Animated.timing(scaleAnim, {
+            toValue: 1.2,
+            duration: 50,
+            useNativeDriver: true,
+        }).start(() => scaleDown());
+    };
+    const scaleDown = () => {
+        Animated.timing(scaleAnim, {
+            toValue: 1,
+            duration: 50,
+            useNativeDriver: true,
+        }).start(() => clickHandle());
+    };
+
+    const clickHandle = () => {
+        console.log('click!');
+    };
+
+    return (
+        <TouchableWithoutFeedback onPress={scaleUp}>
+            <Animated.View
+                style={[styles.card, { transform: [{ scale: scaleAnim }] }]}
+            >
+                <Text style={styles.titles}>{props.title}</Text>
+                <FontAwesome5 name={props.iconName} size={50} color="#1D3557" />
+            </Animated.View>
+        </TouchableWithoutFeedback>
+    );
+}
 
 function Deck() {
     return (
         <View style={styles.container}>
-            <View style={styles.card}>
-                <Text style={styles.titles}>Take Quiz</Text>
-                <FontAwesome5 name="pen-alt" size={40} color="#1D3557" />
-            </View>
-            <View style={styles.card}>
-                <Text style={styles.titles}>Add Card</Text>
-                <FontAwesome5
-                    name="envelope-open-text"
-                    size={40}
-                    color="#1D3557"
-                />
-            </View>
+            <DeckItem title="Add Card" iconName="envelope-open-text" />
+            <DeckItem title="Take Quiz" iconName="pen-alt" />
         </View>
     );
 }
@@ -24,10 +54,9 @@ function Deck() {
 const styles = StyleSheet.create({
     card: {
         margin: 10,
-        marginTop: 30,
         backgroundColor: 'white',
-        width: 175,
-        height: 175,
+        width: 210,
+        height: 210,
         borderRadius: 20,
         /* box shadow */
         shadowColor: '#adb5bd',
@@ -41,15 +70,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     container: {
+        marginTop: 10,
         display: 'flex',
-        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
     },
     titles: {
         position: 'absolute',
         top: 25,
-        fontSize: 20,
+        fontSize: 25,
+        color: '#1D3557',
     },
 });
 
