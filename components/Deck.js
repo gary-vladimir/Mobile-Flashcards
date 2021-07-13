@@ -1,14 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 function Deck() {
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Text>Take Quiz</Text>
+                <Text style={styles.titles}>Take Quiz</Text>
+                <FontAwesome5 name="pen-alt" size={40} color="#1D3557" />
             </View>
             <View style={styles.card}>
-                <Text>Add Card</Text>
+                <Text style={styles.titles}>Add Card</Text>
+                <FontAwesome5
+                    name="envelope-open-text"
+                    size={40}
+                    color="#1D3557"
+                />
             </View>
         </View>
     );
@@ -38,6 +45,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    titles: {
+        position: 'absolute',
+        top: 25,
+        fontSize: 20,
     },
 });
 
