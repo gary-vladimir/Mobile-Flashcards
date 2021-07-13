@@ -7,8 +7,11 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 function DeckItem(props) {
+    const link = props.linkTo;
+    const navigation = useNavigation();
     const scaleAnim = useRef(new Animated.Value(1)).current;
 
     const scaleUp = () => {
@@ -28,6 +31,7 @@ function DeckItem(props) {
 
     const clickHandle = () => {
         console.log('click!');
+        navigation.navigate(link);
     };
 
     return (
@@ -45,8 +49,12 @@ function DeckItem(props) {
 function Deck() {
     return (
         <View style={styles.container}>
-            <DeckItem title="Add Card" iconName="envelope-open-text" />
-            <DeckItem title="Take Quiz" iconName="pen-alt" />
+            <DeckItem
+                title="Add Card"
+                iconName="envelope-open-text"
+                linkTo="AddCard"
+            />
+            <DeckItem title="Take Quiz" iconName="pen-alt" linkTo="TakeQuiz" />
         </View>
     );
 }
