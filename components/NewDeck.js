@@ -16,13 +16,13 @@ function generateUID() {
 }
 
 function NewDeck(props) {
-    /* console.log(
-        props.dispatch({
-            type: 'ADD_DECK',
-            deck: { id: generateUID(), title: 'marvel universe', cards: [] },
-        }),
-        ' new deck props'
-    ); */
+    const [textInputValue, setTextInputValue] = React.useState('');
+    const handleChange = (event) => {
+        setTextInputValue(event.target.value);
+    };
+
+    console.log(textInputValue);
+
     return (
         <View style={{ padding: 20 }}>
             <Text style={styles.title}>New Deck</Text>
@@ -30,7 +30,7 @@ function NewDeck(props) {
                 <Text style={styles.questionTxt}>
                     What is the title of your new deck?
                 </Text>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input} onChange={handleChange} />
                 <TouchableOpacity
                     style={styles.btn}
                     onPress={() => {
@@ -38,7 +38,7 @@ function NewDeck(props) {
                             type: 'ADD_DECK',
                             deck: {
                                 id: generateUID(),
-                                title: 'marvel universe',
+                                title: textInputValue,
                                 cards: [],
                             },
                         });
