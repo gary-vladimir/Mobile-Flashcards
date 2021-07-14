@@ -41,9 +41,17 @@ let hardCodedDecks = {
     },
 };
 
-const reducer = (state = hardCodedDecks, action) => {
+const decks = (state = hardCodedDecks, action) => {
     console.log('reducer called');
-    return state;
+    switch (action.type) {
+        case 'ADD_DECK':
+            return state.concat([action.deck]);
+        case 'REMOVE_DECK':
+            return state.filter((deck) => deck.id !== action.id);
+
+        default:
+            return state;
+    }
 };
 
-export default reducer;
+export default decks;

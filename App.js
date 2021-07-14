@@ -17,10 +17,10 @@ import {
 } from '@expo-google-fonts/play';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './reducers';
+import decks from './reducers';
 import middleware from './middleware';
 
-const store = createStore(reducer, middleware);
+const store = createStore(decks, middleware);
 console.log(store.getState());
 
 const Tab = createBottomTabNavigator();
