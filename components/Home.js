@@ -15,6 +15,7 @@ function Home(props) {
                         name={decks[key].title}
                         numberOfCards={decks[key].cards.length}
                         id={decks[key].id}
+                        key={decks[key].id}
                     />
                 );
             })}
