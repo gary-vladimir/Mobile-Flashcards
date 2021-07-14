@@ -1,14 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import DashboardDeckItem from './DashboardDeckItem';
+import { connect } from 'react-redux';
 
-function Home() {
+function Home(props) {
+    let decks = props.decks;
+    console.log(Object.keys(decks));
     return (
         <ScrollView style={{ padding: 20 }}>
             <Text style={styles.title}>Decks</Text>
-            <DashboardDeckItem name="Marvel" numberOfCards={3} />
-            <DashboardDeckItem name="Star Wars" numberOfCards={4} />
-            <DashboardDeckItem name="Halo 4" numberOfCards={8} />
+            {Object.keys(decks).map(function (key, index) {
+                return (
+                    <DashboardDeckItem
+                        name={decks[key].title}
+                        numberOfCards={decks[key].cards.length}
+                    />
+                );
+            })}
             <View style={{ height: 30 }} />
         </ScrollView>
     );
@@ -22,4 +30,10 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Home;
+function mapStateToProps(state) {
+    return {
+        decks: state,
+    };
+}
+
+export default connect(mapStateToProps)(Home);
