@@ -46,7 +46,7 @@ const decks = (state = hardCodedDecks, action) => {
     switch (action.type) {
         case 'ADD_DECK':
             state[action.deck.id] = action.deck;
-            return state;
+            return Object.assign({}, state);
         case 'REMOVE_DECK':
             return state.filter((deck) => deck.id !== action.id);
 
