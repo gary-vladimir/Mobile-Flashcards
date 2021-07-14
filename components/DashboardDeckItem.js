@@ -38,8 +38,8 @@ function DashboardDeckItem(props) {
     };
 
     const clickHandle = () => {
-        console.log('click!');
-        navigation.navigate('Deck');
+        console.log(props.id, 'clicked!');
+        navigation.navigate('Deck', props.id);
     };
 
     return !fontsLoaded ? (

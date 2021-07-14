@@ -14,6 +14,7 @@ function Home(props) {
                     <DashboardDeckItem
                         name={decks[key].title}
                         numberOfCards={decks[key].cards.length}
+                        id={decks[key].id}
                     />
                 );
             })}
