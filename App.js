@@ -15,6 +15,11 @@ import {
     Play_400Regular,
     Play_700Bold,
 } from '@expo-google-fonts/play';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+
+const store = createStore(reducer);
 
 const Tab = createBottomTabNavigator();
 
@@ -77,34 +82,36 @@ function Dashboard() {
 export default class App extends React.Component {
     render() {
         return (
-            <NavigationContainer>
-                <CustomStatusBar
-                    backgroundColor={'#8d99ae'}
-                    barStyle="light-content"
-                />
-                <Stack.Navigator>
-                    <Stack.Screen
-                        name="Dashboard"
-                        options={{ headerShown: false }}
-                        component={Dashboard}
+            <Provider store={store}>
+                <NavigationContainer>
+                    <CustomStatusBar
+                        backgroundColor={'#8d99ae'}
+                        barStyle="light-content"
                     />
-                    <Stack.Screen
-                        name="Deck"
-                        options={headerOptions(4, 'Halo 4')}
-                        component={Deck}
-                    />
-                    <Stack.Screen
-                        name="AddCard"
-                        options={headerOptions(4, 'Add Card')}
-                        component={AddCard}
-                    />
-                    <Stack.Screen
-                        name="TakeQuiz"
-                        options={headerOptions(4, 'Take Quiz')}
-                        component={TakeQuiz}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen
+                            name="Dashboard"
+                            options={{ headerShown: false }}
+                            component={Dashboard}
+                        />
+                        <Stack.Screen
+                            name="Deck"
+                            options={headerOptions(4, 'Halo 4')}
+                            component={Deck}
+                        />
+                        <Stack.Screen
+                            name="AddCard"
+                            options={headerOptions(4, 'Add Card')}
+                            component={AddCard}
+                        />
+                        <Stack.Screen
+                            name="TakeQuiz"
+                            options={headerOptions(4, 'Take Quiz')}
+                            component={TakeQuiz}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </Provider>
         );
     }
 }
