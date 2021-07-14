@@ -1,4 +1,47 @@
-const reducer = (state = 0, action) => {
+let hardCodedDecks = {
+    '94gwknx0otqx9y5hhlsct': {
+        title: 'Star Wars',
+        id: '94gwknx0otqx9y5hhlsct',
+        cards: [
+            {
+                question: 'Who composed the main Star Wars theme?',
+                answer: 'John Williams',
+            },
+            {
+                question: 'What is Chewbacca’s weapon of choice?',
+                answer: 'Bowcaster',
+            },
+            {
+                question: 'Who is Rey’s grandfather?',
+                answer: 'Emperor Palpatine',
+            },
+        ],
+    },
+    k5e65lzj9tghyotx9mi9: {
+        title: 'Halo',
+        id: 'k5e65lzj9tghyotx9mi9',
+        cards: [
+            {
+                question: 'Who built the Halo devices?',
+                answer: 'The Forerunners',
+            },
+            {
+                question: "What is Master Chief's real name",
+                answer: 'Jhon ',
+            },
+            {
+                question: 'What is Installation 00 better known as?',
+                answer: 'The Ark',
+            },
+            {
+                question: "What are Master Chief's final words in Halo 3",
+                answer: 'Wake me when you need me',
+            },
+        ],
+    },
+};
+
+const reducer = (state = hardCodedDecks, action) => {
     console.log('reducer called');
     return state;
 };

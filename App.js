@@ -21,6 +21,7 @@ import reducer from './reducers';
 import middleware from './middleware';
 
 const store = createStore(reducer, middleware);
+console.log(store.getState());
 
 const Tab = createBottomTabNavigator();
 
@@ -37,6 +38,7 @@ function CustomStatusBar({ backgroundColor, ...props }) {
         </View>
     );
 }
+
 function Dashboard() {
     /* font */
     let [fontsLoaded, error] = useFonts({
