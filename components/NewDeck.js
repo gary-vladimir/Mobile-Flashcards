@@ -6,8 +6,23 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
+import { connect } from 'react-redux';
 
-function NewDeck() {
+function generateUID() {
+    return (
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15)
+    );
+}
+
+function NewDeck(props) {
+    /* console.log(
+        props.dispatch({
+            type: 'ADD_DECK',
+            deck: { id: generateUID(), title: 'marvel universe', cards: [] },
+        }),
+        ' new deck props'
+    ); */
     return (
         <View style={{ padding: 20 }}>
             <Text style={styles.title}>New Deck</Text>
@@ -16,7 +31,19 @@ function NewDeck() {
                     What is the title of your new deck?
                 </Text>
                 <TextInput style={styles.input} />
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity
+                    style={styles.btn}
+                    onPress={() => {
+                        props.dispatch({
+                            type: 'ADD_DECK',
+                            deck: {
+                                id: generateUID(),
+                                title: 'marvel universe',
+                                cards: [],
+                            },
+                        });
+                    }}
+                >
                     <Text
                         style={{
                             color: '#457B9D',
@@ -82,4 +109,10 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NewDeck;
+function mapStateToProps(state) {
+    return {
+        store: state,
+    };
+}
+
+export default connect(mapStateToProps)(NewDeck);

@@ -45,7 +45,8 @@ const decks = (state = hardCodedDecks, action) => {
     console.log('reducer called');
     switch (action.type) {
         case 'ADD_DECK':
-            return state.concat([action.deck]);
+            state[action.deck.id] = action.deck;
+            return state;
         case 'REMOVE_DECK':
             return state.filter((deck) => deck.id !== action.id);
 
