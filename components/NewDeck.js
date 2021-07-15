@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 function generateUID() {
     return (
@@ -16,6 +17,8 @@ function generateUID() {
 }
 
 function NewDeck(props) {
+    const navigation = useNavigation();
+
     const [textInputValue, setTextInputValue] = React.useState('');
     const handleChange = (event) => {
         setTextInputValue(event.target.value);
@@ -41,6 +44,7 @@ function NewDeck(props) {
                 <TouchableOpacity
                     style={styles.btn}
                     onPress={() => {
+                        navigation.navigate('Home');
                         props.dispatch({
                             type: 'ADD_DECK',
                             deck: {
