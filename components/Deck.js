@@ -6,10 +6,12 @@ import {
     Animated,
     TouchableWithoutFeedback,
     TouchableOpacity,
+    ScrollView,
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 function DeckItem(props) {
     const link = props.linkTo;
@@ -52,7 +54,7 @@ function Deck() {
     const navigation = useNavigation();
 
     return (
-        <View>
+        <ScrollView>
             <View style={styles.navBar}>
                 <TouchableOpacity
                     style={{ marginLeft: 15 }}
@@ -92,7 +94,33 @@ function Deck() {
                     linkTo="TakeQuiz"
                 />
             </View>
-        </View>
+            <View style={{ padding: 20 }}>
+                <Text
+                    style={{ color: '#8d99ae', fontSize: 18, marginBottom: 10 }}
+                >
+                    cards:
+                </Text>
+                {/* map here */}
+
+                <View style={styles.cardCards}>
+                    <Text
+                        style={{
+                            fontSize: 16,
+                            color: '#1D3557',
+                            marginLeft: 20,
+                        }}
+                    >
+                        What is 117 name?
+                    </Text>
+                    <FontAwesome
+                        name="trash-o"
+                        size={35}
+                        color="#8d99ae"
+                        style={{ position: 'absolute', right: 25 }}
+                    />
+                </View>
+            </View>
+        </ScrollView>
     );
 }
 
@@ -141,6 +169,23 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         height: 100,
         alignItems: 'center',
+    },
+    cardCards: {
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        /* box shadow */
+        shadowColor: '#adb5bd',
+        shadowOffset: { width: 0, height: 0.2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        elevation: 5,
+        borderRadius: 10,
+
+        height: 70,
+        alignItems: 'center',
+
+        marginBottom: 20,
     },
 });
 
