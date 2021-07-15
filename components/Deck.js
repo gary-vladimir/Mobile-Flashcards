@@ -52,7 +52,7 @@ function Deck() {
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container}>
+        <View>
             <View style={styles.navBar}>
                 <TouchableOpacity
                     style={{ marginLeft: 15 }}
@@ -80,12 +80,18 @@ function Deck() {
                     </Text>
                 </View>
             </View>
-            <DeckItem
-                title="Add Card"
-                iconName="envelope-open-text"
-                linkTo="AddCard"
-            />
-            <DeckItem title="Take Quiz" iconName="pen-alt" linkTo="TakeQuiz" />
+            <View style={styles.container}>
+                <DeckItem
+                    title="Add Card"
+                    iconName="envelope-open-text"
+                    linkTo="AddCard"
+                />
+                <DeckItem
+                    title="Take Quiz"
+                    iconName="pen-alt"
+                    linkTo="TakeQuiz"
+                />
+            </View>
         </View>
     );
 }
@@ -94,8 +100,8 @@ const styles = StyleSheet.create({
     card: {
         margin: 10,
         backgroundColor: 'white',
-        width: 210,
-        height: 210,
+        width: 180,
+        height: 180,
         borderRadius: 20,
         /* box shadow */
         shadowColor: '#adb5bd',
@@ -110,6 +116,7 @@ const styles = StyleSheet.create({
     },
     container: {
         display: 'flex',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
     },
