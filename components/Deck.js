@@ -12,6 +12,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { connect } from 'react-redux';
 
 function DeckItem(props) {
     const link = props.linkTo;
@@ -51,7 +52,11 @@ function DeckItem(props) {
 }
 
 function Deck(props) {
-    console.log('id in Deck', props.route.params.id);
+    const thisDeckId = props.route.params.id;
+    const store = props.store;
+    const thisDeck = store[thisDeckId];
+
+    console.log(thisDeck);
     const navigation = useNavigation();
 
     return (
@@ -71,7 +76,7 @@ function Deck(props) {
                             color: '#1D3557',
                         }}
                     >
-                        Halo 4
+                        {thisDeck.title}
                     </Text>
                     <Text
                         style={{
@@ -79,7 +84,7 @@ function Deck(props) {
                             color: '#457B9D',
                         }}
                     >
-                        4 cards
+                        {thisDeck.cards.length} cards
                     </Text>
                 </View>
             </View>
@@ -102,23 +107,30 @@ function Deck(props) {
                     cards:
                 </Text>
                 {/* map here */}
-
-                <View style={styles.cardCards}>
-                    <Text
-                        style={{
-                            fontSize: 16,
-                            color: '#1D3557',
-                            marginLeft: 20,
-                        }}
-                    >
-                        What is 117 name?
-                    </Text>
-                    <TouchableOpacity
-                        style={{ position: 'absolute', right: 25 }}
-                    >
-                        <FontAwesome name="trash-o" size={35} color="#8d99ae" />
-                    </TouchableOpacity>
-                </View>
+                {thisDeck.cards.map((card, index) => {
+                    return (
+                        <View style={styles.cardCards} key={index}>
+                            <Text
+                                style={{
+                                    fontSize: 16,
+                                    color: '#1D3557',
+                                    marginLeft: 20,
+                                }}
+                            >
+                                {card.question.substring(0, 35) + '...'}
+                            </Text>
+                            <TouchableOpacity
+                                style={{ position: 'absolute', right: 25 }}
+                            >
+                                <FontAwesome
+                                    name="trash-o"
+                                    size={35}
+                                    color="#8d99ae"
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    );
+                })}
             </View>
         </ScrollView>
     );
@@ -189,4 +201,10 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Deck;
+function mapStateToProps(state) {
+    return {
+        store: state,
+    };
+}
+
+export default connect(mapStateToProps)(Deck);
