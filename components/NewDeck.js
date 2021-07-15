@@ -20,6 +20,9 @@ function NewDeck(props) {
     const handleChange = (event) => {
         setTextInputValue(event.target.value);
     };
+    const handleChangeText = (value) => {
+        setTextInputValue(value);
+    };
 
     console.log(textInputValue);
 
@@ -30,7 +33,11 @@ function NewDeck(props) {
                 <Text style={styles.questionTxt}>
                     What is the title of your new deck?
                 </Text>
-                <TextInput style={styles.input} onChange={handleChange} />
+                <TextInput
+                    style={styles.input}
+                    onChange={handleChange}
+                    onChangeText={(text) => handleChangeText(text)}
+                />
                 <TouchableOpacity
                     style={styles.btn}
                     onPress={() => {
