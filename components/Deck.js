@@ -112,12 +112,11 @@ function Deck() {
                     >
                         What is 117 name?
                     </Text>
-                    <FontAwesome
-                        name="trash-o"
-                        size={35}
-                        color="#8d99ae"
+                    <TouchableOpacity
                         style={{ position: 'absolute', right: 25 }}
-                    />
+                    >
+                        <FontAwesome name="trash-o" size={35} color="#8d99ae" />
+                    </TouchableOpacity>
                 </View>
             </View>
         </ScrollView>
