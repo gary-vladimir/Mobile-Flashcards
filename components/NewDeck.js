@@ -38,19 +38,22 @@ function NewDeck(props) {
                 </Text>
                 <TextInput
                     style={styles.input}
-                    onChange={handleChange}
+                    // onChange={handleChange}
                     onChangeText={(text) => handleChangeText(text)}
+                    value={textInputValue}
                 />
                 <TouchableOpacity
                     style={styles.btn}
                     onPress={() => {
                         if (textInputValue !== '') {
+                            const txt = textInputValue;
+                            handleChangeText('');
                             navigation.navigate('Home');
                             props.dispatch({
                                 type: 'ADD_DECK',
                                 deck: {
                                     id: generateUID(),
-                                    title: textInputValue,
+                                    title: txt,
                                     cards: [],
                                 },
                             });
