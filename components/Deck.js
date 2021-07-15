@@ -5,9 +5,11 @@ import {
     StyleSheet,
     Animated,
     TouchableWithoutFeedback,
+    TouchableOpacity,
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
 
 function DeckItem(props) {
     const link = props.linkTo;
@@ -47,8 +49,37 @@ function DeckItem(props) {
 }
 
 function Deck() {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
+            <View style={styles.navBar}>
+                <TouchableOpacity
+                    style={{ marginLeft: 15 }}
+                    onPress={() => navigation.navigate('Home')}
+                >
+                    <AntDesign name="arrowleft" size={40} color="#1D3557" />
+                </TouchableOpacity>
+                <View style={{ marginLeft: 10 }}>
+                    <Text
+                        style={{
+                            fontSize: 24,
+                            fontWeight: 'bold',
+                            color: '#1D3557',
+                        }}
+                    >
+                        Halo 4
+                    </Text>
+                    <Text
+                        style={{
+                            fontFamily: 'Play_400Regular',
+                            color: '#457B9D',
+                        }}
+                    >
+                        4 cards
+                    </Text>
+                </View>
+            </View>
             <DeckItem
                 title="Add Card"
                 iconName="envelope-open-text"
@@ -78,7 +109,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     container: {
-        marginTop: 10,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -88,6 +118,22 @@ const styles = StyleSheet.create({
         top: 25,
         fontSize: 25,
         color: '#1D3557',
+    },
+    navBar: {
+        backgroundColor: 'white',
+        display: 'flex',
+        alignSelf: 'stretch',
+        flexDirection: 'row',
+        /* box shadow */
+        shadowColor: '#adb5bd',
+        shadowOffset: { width: 0, height: 0.2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        elevation: 5,
+
+        marginBottom: 10,
+        height: 100,
+        alignItems: 'center',
     },
 });
 

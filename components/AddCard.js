@@ -6,26 +6,51 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 function AddCard() {
-    return (
-        <View style={styles.card}>
-            <Text style={styles.label}>Question:</Text>
-            <TextInput style={styles.input} />
-            <Text style={styles.label}>Answer:</Text>
-            <TextInput style={styles.input} />
+    const navigation = useNavigation();
 
-            <TouchableOpacity style={styles.btn}>
-                <Text
-                    style={{
-                        color: '#457B9D',
-                        fontWeight: 'bold',
-                        fontSize: 20,
-                    }}
+    return (
+        <View>
+            <View style={styles.navBar}>
+                <TouchableOpacity
+                    style={{ marginLeft: 15 }}
+                    onPress={() => navigation.goBack()}
                 >
-                    Submit
-                </Text>
-            </TouchableOpacity>
+                    <AntDesign name="arrowleft" size={40} color="#1D3557" />
+                </TouchableOpacity>
+                <View style={{ marginLeft: 10 }}>
+                    <Text
+                        style={{
+                            fontSize: 24,
+                            fontWeight: 'bold',
+                            color: '#1D3557',
+                        }}
+                    >
+                        Add Card
+                    </Text>
+                </View>
+            </View>
+            <View style={styles.card}>
+                <Text style={styles.label}>Question:</Text>
+                <TextInput style={styles.input} />
+                <Text style={styles.label}>Answer:</Text>
+                <TextInput style={styles.input} />
+
+                <TouchableOpacity style={styles.btn}>
+                    <Text
+                        style={{
+                            color: '#457B9D',
+                            fontWeight: 'bold',
+                            fontSize: 20,
+                        }}
+                    >
+                        Submit
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -70,6 +95,22 @@ const styles = StyleSheet.create({
         height: 45,
         width: 300,
         borderRadius: 25,
+    },
+    navBar: {
+        backgroundColor: 'white',
+        display: 'flex',
+        alignSelf: 'stretch',
+        flexDirection: 'row',
+        /* box shadow */
+        shadowColor: '#adb5bd',
+        shadowOffset: { width: 0, height: 0.2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        elevation: 5,
+
+        marginBottom: 10,
+        height: 100,
+        alignItems: 'center',
     },
 });
 
