@@ -47,8 +47,9 @@ const decks = (state = hardCodedDecks, action) => {
         case 'ADD_DECK':
             state[action.deck.id] = action.deck;
             return Object.assign({}, state);
-        case 'REMOVE_DECK':
-            return state.filter((deck) => deck.id !== action.id);
+        case 'DELETE_DECK':
+            delete state[action.id];
+            return Object.assign({}, state);
 
         default:
             return state;

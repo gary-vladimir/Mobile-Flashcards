@@ -13,6 +13,8 @@ import {
     Play_700Bold,
 } from '@expo-google-fonts/play';
 import { useNavigation } from '@react-navigation/native';
+import { Feather } from '@expo/vector-icons';
+import { connect } from 'react-redux';
 
 function DashboardDeckItem(props) {
     const navigation = useNavigation();
@@ -42,6 +44,14 @@ function DashboardDeckItem(props) {
         navigation.navigate('Deck', props.id);
     };
 
+    const deleteCard = () => {
+        console.log('delete this card now, id:', props.id);
+        props.dispatch({
+            type: 'DELETE_DECK',
+            id: props.id,
+        });
+    };
+
     return !fontsLoaded ? (
         <Text />
     ) : (
@@ -49,6 +59,10 @@ function DashboardDeckItem(props) {
             <Animated.View
                 style={[styles.card, { transform: [{ scale: scaleAnim }] }]}
             >
+                <TouchableOpacity style={styles.deleteBtn} onPress={deleteCard}>
+                    <Feather name="x" size={24} color="#8d99ae" />
+                </TouchableOpacity>
+
                 <Text style={styles.title}>{props.name}</Text>
                 <Text style={styles.numOfCards}>
                     {props.numberOfCards} cards
@@ -83,6 +97,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    deleteBtn: {
+        position: 'absolute',
+        top: 20,
+        right: 20,
+    },
 });
 
-export default DashboardDeckItem;
+function mapStateToProps(state) {
+    return {
+        store: state,
+    };
+}
+
+export default connect(mapStateToProps)(DashboardDeckItem);
