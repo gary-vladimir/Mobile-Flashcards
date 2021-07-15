@@ -41,7 +41,7 @@ function DashboardDeckItem(props) {
 
     const clickHandle = () => {
         console.log(props.id, 'clicked!');
-        navigation.navigate('Deck', props.id);
+        navigation.navigate('Deck', { id: props.id });
     };
 
     const deleteCard = () => {

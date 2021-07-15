@@ -50,7 +50,8 @@ function DeckItem(props) {
     );
 }
 
-function Deck() {
+function Deck(props) {
+    console.log('id in Deck', props.route.params.id);
     const navigation = useNavigation();
 
     return (
