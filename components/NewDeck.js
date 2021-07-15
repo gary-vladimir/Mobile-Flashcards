@@ -44,15 +44,17 @@ function NewDeck(props) {
                 <TouchableOpacity
                     style={styles.btn}
                     onPress={() => {
-                        navigation.navigate('Home');
-                        props.dispatch({
-                            type: 'ADD_DECK',
-                            deck: {
-                                id: generateUID(),
-                                title: textInputValue,
-                                cards: [],
-                            },
-                        });
+                        if (textInputValue !== '') {
+                            navigation.navigate('Home');
+                            props.dispatch({
+                                type: 'ADD_DECK',
+                                deck: {
+                                    id: generateUID(),
+                                    title: textInputValue,
+                                    cards: [],
+                                },
+                            });
+                        }
                     }}
                 >
                     <Text
