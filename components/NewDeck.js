@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         paddingTop: 50,
     },
     questionTxt: {
-        width: 186,
+        width: 250,
         color: '#1D3557',
         fontSize: 24,
         textAlign: 'center',
