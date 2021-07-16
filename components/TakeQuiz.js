@@ -2,10 +2,31 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { connect } from 'react-redux';
 
-function TakeQuiz() {
+function TakeQuiz(props) {
     const navigation = useNavigation();
 
+    const thisDeckId = props.route.params.id;
+    const cards = props.store[thisDeckId].cards;
+
+    const [index, setIndex] = React.useState(0);
+    const [showAnswer, setStatus] = React.useState('false');
+    const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] =
+        React.useState(0);
+    const [numberOfWrongAnswers, setNumberOfWrongAnswers] = React.useState(0);
+
+    function moveToNextQuestion() {
+        setStatus('false');
+        if (index + 1 !== cards.length) {
+            setIndex(index + 1);
+        } else {
+            setIndex(index);
+            console.log('user completed quiz');
+        }
+    }
+
+    console.log(showAnswer, numberOfWrongAnswers, numberOfCorrectAnswers);
     return (
         <View>
             <View style={styles.navBar}>
@@ -31,31 +52,54 @@ function TakeQuiz() {
                             color: '#457B9D',
                         }}
                     >
-                        2/4
+                        {index + 1}/{cards.length}
                     </Text>
                 </View>
             </View>
             <View style={{ padding: 20 }}>
                 <Text style={styles.title}>Take a Guess!</Text>
                 <View style={styles.card}>
-                    <Text style={styles.question}>What is 117 name?</Text>
+                    <Text style={styles.question}>{cards[index].question}</Text>
 
-                    <TouchableOpacity style={{ marginTop: 170 }}>
-                        <Text
-                            style={{
-                                color: '#FF7A00',
-                                fontSize: 20,
-                                fontWeight: 'bold',
-                            }}
+                    {showAnswer === 'false' ? (
+                        <TouchableOpacity
+                            style={{ marginTop: 170 }}
+                            onPress={() => setStatus('true')}
                         >
-                            View Answer
-                        </Text>
-                    </TouchableOpacity>
+                            <Text
+                                style={{
+                                    color: '#FF7A00',
+                                    fontSize: 20,
+                                    fontWeight: 'bold',
+                                }}
+                            >
+                                View Answer
+                            </Text>
+                        </TouchableOpacity>
+                    ) : (
+                        <View style={{ marginTop: 170 }}>
+                            <Text
+                                style={{
+                                    color: '#4895ef',
+                                    fontSize: 20,
+                                    fontWeight: 'bold',
+                                }}
+                            >
+                                {cards[index].answer}
+                            </Text>
+                        </View>
+                    )}
 
                     <Text style={styles.myGuessTxt}>My guess was:</Text>
 
                     <View style={{ display: 'flex', flexDirection: 'row' }}>
                         <TouchableOpacity
+                            onPress={() => {
+                                moveToNextQuestion();
+                                setNumberOfWrongAnswers(
+                                    numberOfWrongAnswers + 1
+                                );
+                            }}
                             style={[styles.btn, { backgroundColor: '#FFAEB4' }]}
                         >
                             <Text
@@ -69,6 +113,12 @@ function TakeQuiz() {
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
+                            onPress={() => {
+                                moveToNextQuestion();
+                                setNumberOfCorrectAnswers(
+                                    numberOfCorrectAnswers + 1
+                                );
+                            }}
                             style={[styles.btn, { backgroundColor: '#91DFD6' }]}
                         >
                             <Text
@@ -150,4 +200,10 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TakeQuiz;
+function mapStateToProps(state) {
+    return {
+        store: state,
+    };
+}
+
+export default connect(mapStateToProps)(TakeQuiz);
