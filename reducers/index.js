@@ -50,6 +50,10 @@ const decks = (state = hardCodedDecks, action) => {
         case 'DELETE_DECK':
             delete state[action.id];
             return Object.assign({}, state);
+        case 'ADD_CARD':
+            console.log('add should be added !!!!!');
+            state[action.deck].cards.push(action.card);
+            return Object.assign({}, state);
 
         default:
             return state;

@@ -8,9 +8,23 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { connect } from 'react-redux';
 
-function AddCard() {
+function AddCard(props) {
     const navigation = useNavigation();
+
+    const thisDeckId = props.route.params.id;
+    const [questionInput, setQuestionInput] = React.useState('');
+    const [answerInput, setAnswerInput] = React.useState('');
+
+    const handleChangeTextAnswer = (value) => {
+        setAnswerInput(value);
+    };
+    const handleChangeTextQuestion = (value) => {
+        setQuestionInput(value);
+    };
+
+    console.log(questionInput, answerInput, thisDeckId);
 
     return (
         <View>
@@ -35,11 +49,34 @@ function AddCard() {
             </View>
             <View style={styles.card}>
                 <Text style={styles.label}>Question:</Text>
-                <TextInput style={styles.input} />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={(text) => handleChangeTextQuestion(text)}
+                />
                 <Text style={styles.label}>Answer:</Text>
-                <TextInput style={styles.input} />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={(text) => handleChangeTextAnswer(text)}
+                />
 
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity
+                    style={styles.btn}
+                    onPress={() => {
+                        if (answerInput !== '' && questionInput !== '') {
+                            const answer = answerInput;
+                            const question = questionInput;
+                            navigation.goBack();
+                            props.dispatch({
+                                type: 'ADD_CARD',
+                                card: {
+                                    question: question,
+                                    answer: answer,
+                                },
+                                deck: thisDeckId,
+                            });
+                        }
+                    }}
+                >
                     <Text
                         style={{
                             color: '#457B9D',
@@ -114,4 +151,10 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddCard;
+function mapStateToProps(state) {
+    return {
+        store: state,
+    };
+}
+
+export default connect(mapStateToProps)(AddCard);

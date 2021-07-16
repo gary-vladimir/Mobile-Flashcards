@@ -36,7 +36,7 @@ function DeckItem(props) {
 
     const clickHandle = () => {
         console.log('click!');
-        navigation.navigate(link);
+        navigation.navigate(link, { id: props.thisDeckId });
     };
 
     return (
@@ -93,11 +93,13 @@ function Deck(props) {
                     title="Add Card"
                     iconName="envelope-open-text"
                     linkTo="AddCard"
+                    thisDeckId={thisDeckId}
                 />
                 <DeckItem
                     title="Take Quiz"
                     iconName="pen-alt"
                     linkTo="TakeQuiz"
+                    thisDeckId={thisDeckId}
                 />
             </View>
             <View style={{ padding: 20 }}>
