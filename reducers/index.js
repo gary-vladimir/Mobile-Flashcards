@@ -54,6 +54,15 @@ const decks = (state = hardCodedDecks, action) => {
             console.log('add should be added !!!!!');
             state[action.deck].cards.push(action.card);
             return Object.assign({}, state);
+        case 'REMOVE_CARD':
+            console.log(
+                'card in index ',
+                action.id,
+                ' should be deleted from deck:',
+                action.deck
+            );
+            state[action.deck].cards.splice(action.id, 1);
+            return Object.assign({}, state);
 
         default:
             return state;

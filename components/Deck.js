@@ -122,6 +122,14 @@ function Deck(props) {
                                 {card.question.substring(0, 35) + '...'}
                             </Text>
                             <TouchableOpacity
+                                onPress={() => {
+                                    console.log('delete this card', index);
+                                    props.dispatch({
+                                        type: 'REMOVE_CARD',
+                                        id: index,
+                                        deck: thisDeckId,
+                                    });
+                                }}
                                 style={{ position: 'absolute', right: 25 }}
                             >
                                 <FontAwesome
