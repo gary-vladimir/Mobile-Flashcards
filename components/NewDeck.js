@@ -43,7 +43,15 @@ function NewDeck(props) {
                     value={textInputValue}
                 />
                 <TouchableOpacity
-                    style={styles.btn}
+                    disabled={textInputValue === '' ? true : false}
+                    style={[
+                        styles.btn,
+                        textInputValue === ''
+                            ? { backgroundColor: '#ced4da' }
+                            : {
+                                  backgroundColor: '#A8DADC',
+                              },
+                    ]}
                     onPress={() => {
                         if (textInputValue !== '') {
                             const txt = textInputValue;
@@ -62,11 +70,15 @@ function NewDeck(props) {
                     }}
                 >
                     <Text
-                        style={{
-                            color: '#457B9D',
-                            fontWeight: 'bold',
-                            fontSize: 20,
-                        }}
+                        style={[
+                            {
+                                fontWeight: 'bold',
+                                fontSize: 20,
+                            },
+                            textInputValue === ''
+                                ? { color: '#adb5bd' }
+                                : { color: '#457B9D' },
+                        ]}
                     >
                         Submit
                     </Text>
@@ -119,7 +131,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#A8DADC',
         height: 45,
         width: 300,
         borderRadius: 25,

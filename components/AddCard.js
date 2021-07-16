@@ -60,7 +60,19 @@ function AddCard(props) {
                 />
 
                 <TouchableOpacity
-                    style={styles.btn}
+                    disabled={
+                        answerInput === '' || questionInput === ''
+                            ? true
+                            : false
+                    }
+                    style={[
+                        styles.btn,
+                        answerInput === '' || questionInput === ''
+                            ? { backgroundColor: '#ced4da' }
+                            : {
+                                  backgroundColor: '#A8DADC',
+                              },
+                    ]}
                     onPress={() => {
                         if (answerInput !== '' && questionInput !== '') {
                             const answer = answerInput;
@@ -78,11 +90,15 @@ function AddCard(props) {
                     }}
                 >
                     <Text
-                        style={{
-                            color: '#457B9D',
-                            fontWeight: 'bold',
-                            fontSize: 20,
-                        }}
+                        style={[
+                            {
+                                fontWeight: 'bold',
+                                fontSize: 20,
+                            },
+                            answerInput === '' || questionInput === ''
+                                ? { color: '#adb5bd' }
+                                : { color: '#457B9D' },
+                        ]}
                     >
                         Submit
                     </Text>
@@ -128,7 +144,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#A8DADC',
         height: 45,
         width: 300,
         borderRadius: 25,
