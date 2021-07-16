@@ -48,15 +48,16 @@ function NewDeck(props) {
                         if (textInputValue !== '') {
                             const txt = textInputValue;
                             handleChangeText('');
-                            navigation.navigate('Home');
+                            let id = generateUID();
                             props.dispatch({
                                 type: 'ADD_DECK',
                                 deck: {
-                                    id: generateUID(),
+                                    id: id,
                                     title: txt,
                                     cards: [],
                                 },
                             });
+                            navigation.navigate('Deck', { id: id });
                         }
                     }}
                 >
