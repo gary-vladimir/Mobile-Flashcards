@@ -7,6 +7,7 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     ScrollView,
+    Alert,
 } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -123,12 +124,22 @@ function Deck(props) {
                             </Text>
                             <TouchableOpacity
                                 onPress={() => {
-                                    console.log('delete this card', index);
-                                    props.dispatch({
-                                        type: 'REMOVE_CARD',
-                                        id: index,
-                                        deck: thisDeckId,
-                                    });
+                                    Alert.alert(
+                                        'Warning',
+                                        'do you wish to delete this card?',
+                                        [
+                                            {
+                                                text: 'yes',
+                                                onPress: () =>
+                                                    props.dispatch({
+                                                        type: 'REMOVE_CARD',
+                                                        id: index,
+                                                        deck: thisDeckId,
+                                                    }),
+                                            },
+                                            { text: 'no' },
+                                        ]
+                                    );
                                 }}
                                 style={{ position: 'absolute', right: 25 }}
                             >

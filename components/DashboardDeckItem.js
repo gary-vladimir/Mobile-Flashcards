@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     Animated,
     TouchableWithoutFeedback,
+    Alert,
 } from 'react-native';
 import {
     useFonts,
@@ -45,11 +46,17 @@ function DashboardDeckItem(props) {
     };
 
     const deleteCard = () => {
-        console.log('delete this card now, id:', props.id);
-        props.dispatch({
-            type: 'DELETE_DECK',
-            id: props.id,
-        });
+        Alert.alert('Warning', 'do you wish to delete this deck?', [
+            {
+                text: 'yes',
+                onPress: () =>
+                    props.dispatch({
+                        type: 'DELETE_DECK',
+                        id: props.id,
+                    }),
+            },
+            { text: 'no' },
+        ]);
     };
 
     return !fontsLoaded ? (
