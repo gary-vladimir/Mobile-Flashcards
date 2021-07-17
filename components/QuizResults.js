@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -34,18 +34,18 @@ function QuizResults(props) {
                 </Text>
             </View>
 
-            <View>
+            <TouchableOpacity>
                 <Text>Restart Quiz</Text>
                 <MaterialCommunityIcons
                     name="restore"
                     size={24}
                     color="black"
                 />
-            </View>
-            <View>
+            </TouchableOpacity>
+            <TouchableOpacity>
                 <Text>Back to Deck</Text>
                 <MaterialIcons name="exit-to-app" size={24} color="black" />
-            </View>
+            </TouchableOpacity>
         </View>
     );
 }
