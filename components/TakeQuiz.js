@@ -1,11 +1,18 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useRef } from 'react';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    StyleSheet,
+    Animated,
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { connect } from 'react-redux';
 
 function TakeQuiz(props) {
     const navigation = useNavigation();
+    const scaleAnim = useRef(new Animated.Value(1)).current;
 
     const thisDeckId = props.route.params.id;
     const cards = props.store[thisDeckId].cards;
@@ -17,6 +24,7 @@ function TakeQuiz(props) {
     const [numberOfWrongAnswers, setNumberOfWrongAnswers] = React.useState(0);
 
     function moveToNextQuestion() {
+        scaleUp();
         setStatus('false');
         if (index + 1 !== cards.length) {
             setIndex(index + 1);
@@ -25,6 +33,23 @@ function TakeQuiz(props) {
             console.log('user completed quiz');
         }
     }
+
+    /* animation */
+
+    const scaleUp = () => {
+        Animated.timing(scaleAnim, {
+            toValue: 1.2,
+            duration: 50,
+            useNativeDriver: true,
+        }).start(() => scaleDown());
+    };
+    const scaleDown = () => {
+        Animated.timing(scaleAnim, {
+            toValue: 1,
+            duration: 50,
+            useNativeDriver: true,
+        }).start();
+    };
 
     console.log(showAnswer, numberOfWrongAnswers, numberOfCorrectAnswers);
     return (
@@ -56,7 +81,10 @@ function TakeQuiz(props) {
                     </Text>
                 </View>
             </View>
-            <View style={{ padding: 20 }}>
+
+            <Animated.View
+                style={{ padding: 20, transform: [{ scale: scaleAnim }] }}
+            >
                 <Text style={styles.title}>Take a Guess!</Text>
                 <View style={styles.card}>
                     <Text style={styles.question}>{cards[index].question}</Text>
@@ -133,7 +161,7 @@ function TakeQuiz(props) {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </Animated.View>
         </View>
     );
 }
