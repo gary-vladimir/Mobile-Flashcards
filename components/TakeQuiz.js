@@ -71,23 +71,29 @@ function TakeQuiz(props) {
                     >
                         Quiz
                     </Text>
-                    <Text
+                    <Animated.Text
                         style={{
                             fontFamily: 'Play_400Regular',
                             color: '#457B9D',
+                            transform: [{ scale: scaleAnim }],
                         }}
                     >
                         {index + 1}/{cards.length}
-                    </Text>
+                    </Animated.Text>
                 </View>
             </View>
 
-            <Animated.View
-                style={{ padding: 20, transform: [{ scale: scaleAnim }] }}
-            >
+            <View style={{ padding: 20 }}>
                 <Text style={styles.title}>Take a Guess!</Text>
                 <View style={styles.card}>
-                    <Text style={styles.question}>{cards[index].question}</Text>
+                    <Animated.Text
+                        style={[
+                            styles.question,
+                            { transform: [{ scale: scaleAnim }] },
+                        ]}
+                    >
+                        {cards[index].question}
+                    </Animated.Text>
 
                     {showAnswer === 'false' ? (
                         <TouchableOpacity
@@ -161,7 +167,7 @@ function TakeQuiz(props) {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </Animated.View>
+            </View>
         </View>
     );
 }
