@@ -9,6 +9,7 @@ import AddCard from './components/AddCard';
 import TakeQuiz from './components/TakeQuiz';
 import Constants from 'expo-constants';
 import Deck from './components/Deck';
+import QuizResults from './components/QuizResults';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
     useFonts,
@@ -111,6 +112,11 @@ export default class App extends React.Component {
                             name="TakeQuiz"
                             options={{ headerShown: false }}
                             component={TakeQuiz}
+                        />
+                        <Stack.Screen
+                            name="QuizResults"
+                            options={{ headerShown: false }}
+                            component={QuizResults}
                         />
                     </Stack.Navigator>
                 </NavigationContainer>

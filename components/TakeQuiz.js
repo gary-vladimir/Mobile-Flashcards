@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
     View,
     Text,
@@ -22,6 +22,22 @@ function TakeQuiz(props) {
     const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] =
         React.useState(0);
     const [numberOfWrongAnswers, setNumberOfWrongAnswers] = React.useState(0);
+    const [userCompletedQuiz, setUserCompletedQuiz] = React.useState('false');
+
+    useEffect(() => {
+        if (userCompletedQuiz === 'true') {
+            console.log('finalizado', numberOfCorrectAnswers);
+            complete();
+        }
+    }, [userCompletedQuiz]);
+
+    const complete = () => {
+        navigation.navigate('QuizResults', {
+            id: thisDeckId,
+            numberOfWrongAnswers,
+            numberOfCorrectAnswers,
+        });
+    };
 
     function moveToNextQuestion() {
         scaleUp();
@@ -31,6 +47,7 @@ function TakeQuiz(props) {
         } else {
             setIndex(index);
             console.log('user completed quiz');
+            setUserCompletedQuiz('true');
         }
     }
 
@@ -51,7 +68,6 @@ function TakeQuiz(props) {
         }).start();
     };
 
-    console.log(showAnswer, numberOfWrongAnswers, numberOfCorrectAnswers);
     return (
         <View>
             <View style={styles.navBar}>
