@@ -61,18 +61,47 @@ function QuizResults(props) {
                 </View>
             </View>
 
-            <TouchableOpacity>
-                <Text>Restart Quiz</Text>
-                <MaterialCommunityIcons
-                    name="restore"
-                    size={24}
-                    color="black"
-                />
-            </TouchableOpacity>
-            <TouchableOpacity>
-                <Text>Back to Deck</Text>
-                <MaterialIcons name="exit-to-app" size={24} color="black" />
-            </TouchableOpacity>
+            <View
+                style={{
+                    marginTop: 20,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-evenly',
+                }}
+            >
+                <TouchableOpacity style={[styles.card, styles.btns]}>
+                    <Text
+                        style={{
+                            position: 'absolute',
+                            top: 30,
+                            color: '#1D3557',
+                        }}
+                    >
+                        Restart Quiz
+                    </Text>
+                    <MaterialCommunityIcons
+                        name="restore"
+                        size={40}
+                        color="#1D3557"
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.card, styles.btns]}>
+                    <Text
+                        style={{
+                            position: 'absolute',
+                            top: 30,
+                            color: '#1D3557',
+                        }}
+                    >
+                        Back to Deck
+                    </Text>
+                    <MaterialIcons
+                        name="exit-to-app"
+                        size={40}
+                        color="#1D3557"
+                    />
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -116,6 +145,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    btns: {
+        width: 150,
+        height: 150,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 20,
     },
 });
 
