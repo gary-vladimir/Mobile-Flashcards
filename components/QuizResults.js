@@ -48,14 +48,17 @@ function QuizResults(props) {
                     </Text>
                 </View>
             </View>
-            <View>
-                <Text>
-                    {Math.round(
-                        (numberOfCorrectAnswers * 100) /
-                            (numberOfWrongAnswers + numberOfCorrectAnswers)
-                    )}
-                    %
-                </Text>
+
+            <View style={{ alignItems: 'center' }}>
+                <View style={[styles.card, styles.porcentage]}>
+                    <Text style={styles.title}>
+                        {Math.round(
+                            (numberOfCorrectAnswers * 100) /
+                                (numberOfWrongAnswers + numberOfCorrectAnswers)
+                        )}
+                        %
+                    </Text>
+                </View>
             </View>
 
             <TouchableOpacity>
@@ -102,6 +105,14 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    porcentage: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
