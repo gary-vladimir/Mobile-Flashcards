@@ -32,6 +32,12 @@ function TakeQuiz(props) {
     }, [userCompletedQuiz]);
 
     const complete = () => {
+        setUserCompletedQuiz('false');
+        setNumberOfCorrectAnswers(0);
+        setNumberOfWrongAnswers(0);
+        setIndex(0);
+        setStatus('false');
+
         navigation.navigate('QuizResults', {
             id: thisDeckId,
             numberOfWrongAnswers,

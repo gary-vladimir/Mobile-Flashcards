@@ -3,8 +3,11 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 function QuizResults(props) {
+    const navigation = useNavigation();
+
     const store = props.store;
     const thisDeckId = props.route.params.id;
     const numberOfCorrectAnswers = props.route.params.numberOfCorrectAnswers;
@@ -69,7 +72,12 @@ function QuizResults(props) {
                     justifyContent: 'space-evenly',
                 }}
             >
-                <TouchableOpacity style={[styles.card, styles.btns]}>
+                <TouchableOpacity
+                    style={[styles.card, styles.btns]}
+                    onPress={() => {
+                        navigation.navigate('TakeQuiz', { id: thisDeckId });
+                    }}
+                >
                     <Text
                         style={{
                             position: 'absolute',
@@ -85,7 +93,12 @@ function QuizResults(props) {
                         color="#1D3557"
                     />
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.card, styles.btns]}>
+                <TouchableOpacity
+                    style={[styles.card, styles.btns]}
+                    onPress={() => {
+                        navigation.navigate('Deck', { id: thisDeckId });
+                    }}
+                >
                     <Text
                         style={{
                             position: 'absolute',
