@@ -10,18 +10,42 @@ function QuizResults(props) {
     const numberOfCorrectAnswers = props.route.params.numberOfCorrectAnswers;
     const numberOfWrongAnswers = props.route.params.numberOfWrongAnswers;
     return (
-        <View>
-            <Text>Results</Text>
-            <View>
-                <Text>Correctly answered questions:</Text>
-                <View>
-                    <Text>{numberOfCorrectAnswers}</Text>
+        <View style={{ padding: 20 }}>
+            <Text style={styles.title}>Results</Text>
+            <View style={[styles.card, styles.cardQuestions]}>
+                <Text style={{ fontSize: 18, color: '#1D3557' }}>
+                    Correctly answered questions:
+                </Text>
+                <View
+                    style={[{ position: 'absolute', right: 20 }, styles.number]}
+                >
+                    <Text
+                        style={{
+                            fontSize: 24,
+                            color: '#1D3557',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        {numberOfCorrectAnswers}
+                    </Text>
                 </View>
             </View>
-            <View>
-                <Text>Incorrectly answered questions:</Text>
-                <View>
-                    <Text>{numberOfWrongAnswers}</Text>
+            <View style={[styles.card, styles.cardQuestions]}>
+                <Text style={{ fontSize: 18, color: '#1D3557' }}>
+                    Incorrectly answered questions:
+                </Text>
+                <View
+                    style={[{ position: 'absolute', right: 20 }, styles.number]}
+                >
+                    <Text
+                        style={{
+                            fontSize: 24,
+                            color: '#1D3557',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        {numberOfWrongAnswers}
+                    </Text>
                 </View>
             </View>
             <View>
@@ -49,6 +73,40 @@ function QuizResults(props) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    title: {
+        color: '#1D3557',
+        fontWeight: 'bold',
+        fontSize: 24,
+    },
+    card: {
+        backgroundColor: 'white',
+        /* box shadow */
+        shadowColor: '#adb5bd',
+        shadowOffset: { width: 0, height: 0.2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        elevation: 5,
+    },
+    cardQuestions: {
+        borderRadius: 20,
+        height: 80,
+        display: 'flex',
+        justifyContent: 'center',
+        padding: 20,
+        marginVertical: 15,
+    },
+    number: {
+        backgroundColor: '#A8DADC',
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
 
 function mapStateToProps(state) {
     return {
