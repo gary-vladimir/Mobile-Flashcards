@@ -96,12 +96,16 @@ function Deck(props) {
                     linkTo="AddCard"
                     thisDeckId={thisDeckId}
                 />
-                <DeckItem
-                    title="Take Quiz"
-                    iconName="pen-alt"
-                    linkTo="TakeQuiz"
-                    thisDeckId={thisDeckId}
-                />
+                {thisDeck.cards.length === 0 ? (
+                    <View></View>
+                ) : (
+                    <DeckItem
+                        title="Take Quiz"
+                        iconName="pen-alt"
+                        linkTo="TakeQuiz"
+                        thisDeckId={thisDeckId}
+                    />
+                )}
             </View>
             <View style={{ padding: 20 }}>
                 <Text
