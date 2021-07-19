@@ -30,8 +30,8 @@ Please make sure to update tests as appropriate.
 
 ## Images of the App
 
-![one](./result_images/one.PNG)
-![two](./result_images/two.PNG)
+![one](./result_images/one.png)
+![two](./result_images/two.png)
 
 # Author
 
