@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { clearLocalNotification, setLocalNotification } from '../utils/api';
 
 function QuizResults(props) {
+    useEffect(() => {
+        clearLocalNotification().then(setLocalNotification);
+    }, []);
+
     const navigation = useNavigation();
 
     const store = props.store;

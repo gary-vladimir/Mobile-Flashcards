@@ -21,6 +21,8 @@ import { Provider } from 'react-redux';
 import decks from './reducers';
 import middleware from './middleware';
 
+import { setLocalNotification } from './utils/api';
+
 const store = createStore(decks, middleware);
 console.log(store.getState());
 
@@ -84,6 +86,9 @@ function Dashboard() {
 }
 
 export default class App extends React.Component {
+    componentDidMount() {
+        setLocalNotification();
+    }
     render() {
         return (
             <Provider store={store}>
