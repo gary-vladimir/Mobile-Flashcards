@@ -30,11 +30,8 @@ Please make sure to update tests as appropriate.
 
 ## Images of the App
 
-![Home](./result_images/Home_View.PNG)
-![New Deck](./result_images/NewDeck_View.PNG)
-![Deck](./result_images/Deck_View.PNG)
-![Add Card](./result_images/AddCard_View.PNG)
-![Take Quiz](./result_images/TakeQuiz_View.PNG)
+![one](./result_images/one.PNG)
+![two](./result_images/two.PNG)
 
 # Author
 
